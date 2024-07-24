@@ -1,0 +1,13 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - init: pip install -r requirements.txt
+  - command: python manage.py migrate && python manage.py runserver 0.0.0.0:8000
+  - command: uvicorn main:app --reload --host 0.0.0.0 --port 8001
+
+ports:
+  - port: 8000
+    onOpen: open-browser
+  - port: 8001
+    onOpen: open-browser
